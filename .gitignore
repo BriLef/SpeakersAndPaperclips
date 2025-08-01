@@ -101,3 +101,7 @@ InitTestScene*.unity*
 SpeakersAndPaperclips/UserSettings/
 
 SpeakersAndPaperclips/Library/
+
+SpeakersAndPaperclips/Temp/
+
+SpeakersAndPaperclips/.idea/
