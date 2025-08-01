@@ -1,8 +1,14 @@
-using System.Collections;
-using System.Collections.Generic;
+using Core;
+using MatchingGame.Scripts.SOs;
 using UnityEngine;
 
-public class MatchingGameController : MonoBehaviour
+namespace MatchingGame.Scripts
 {
-   
+   public class MatchingGameController
+    {
+        public void Initialize(MatchingGameData gameData, int numberOfCards)
+        {
+            
+        }
+    }
 }
