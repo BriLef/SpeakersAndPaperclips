@@ -1,3 +1,16 @@
 {
-	"name": "MatchingGame"
+    "name": "MatchingGame",
+    "rootNamespace": "",
+    "references": [
+        "GUID:82725f84a01a5f747bbbf69da919c7f2"
+    ],
+    "includePlatforms": [],
+    "excludePlatforms": [],
+    "allowUnsafeCode": false,
+    "overrideReferences": false,
+    "precompiledReferences": [],
+    "autoReferenced": true,
+    "defineConstraints": [],
+    "versionDefines": [],
+    "noEngineReferences": false
 }
