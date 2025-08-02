@@ -12,6 +12,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d1c2c5151b7c7074ba0da1406b8aac9e, type: 3}
   m_Name: NewMatchingGameData
   m_EditorClassIdentifier: 
-  DefaultCardTexture: {fileID: 0}
+  ThemeName: New Theme
+  BackCardTexture: {fileID: 0}
+  FaceCardTexture: {fileID: 0}
   PossibleMatches:
+  - {fileID: 0}
+  - {fileID: 0}
   - {fileID: 0}
