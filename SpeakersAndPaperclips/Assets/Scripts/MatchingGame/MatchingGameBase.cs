@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using MatchingGame.Scripts.SOs;
 using UnityEngine;
 using Core;
+using UnityEngine.UI;
 
 namespace MatchingGame.Scripts
 {
@@ -20,6 +21,7 @@ namespace MatchingGame.Scripts
         [SerializeField] private List<GameTypes> _gameTypesList;
         [SerializeField] private PlayButton _playButton;
         [SerializeField] private GameExitButton _exitButton;
+        [SerializeField] private GridLayoutGroup _gridLayout;
         private PageSelector _pageSelector;
         
         private MatchingGameController _gameController;
@@ -36,9 +38,9 @@ namespace MatchingGame.Scripts
         {
             _pageSelector.SelectPageWithString("Game");
 
-            GetCardCountWithDifficulty(_difficulty.GetDifficulty());
+            int cardCount = GetCardCountWithDifficulty(_difficulty.GetDifficulty());
             
-            _gameController = new MatchingGameController(_gameData, 5);
+            _gameController = new MatchingGameController(_gameData, cardCount);
         }
 
         private void ExitGame()
@@ -48,21 +50,13 @@ namespace MatchingGame.Scripts
 
         private int GetCardCountWithDifficulty(Difficulty difficulty)
         {
-            switch (difficulty)
-            {
-                case Difficulty.VeryEasy:
-                    return 4;
-                case Difficulty.Easy:
-                    return 8;
-                case Difficulty.Medium:
-                    return 14;
-                case Difficulty.Hard:
-                    return 22;
-                case Difficulty.VeryHard:
-                    return 32;
-            }
+            
+            int idx = _gameTypesList.FindIndex(p => p.Difficulty == difficulty);
+            Vector2 gridSize = _gameTypesList[idx].GridSize;
+            
+            int numberOfCards = (int)(gridSize.x * gridSize.y);
 
-            return 4;
+            return numberOfCards;
         }
     }
 }
