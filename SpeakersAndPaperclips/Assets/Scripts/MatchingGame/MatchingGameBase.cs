@@ -14,10 +14,9 @@ namespace MatchingGame.Scripts
         [SerializeField] private GameDifficulty _difficulty;
         [SerializeField] private PlayButton _playButton;
         [SerializeField] private GameExitButton _exitButton;
-        [SerializeField] private MatchingCardEntity _cardEntityPrefab;
         [SerializeField] private MatchingBoardView _gameBoard;
-        private PageSelector _pageSelector;
         
+        private PageSelector _pageSelector;
         private MatchingGameController _gameController;
         
         private void Start()
@@ -32,7 +31,7 @@ namespace MatchingGame.Scripts
         {
             _pageSelector.SelectPageWithString("Game");
     
-            _gameController = new MatchingGameController(_gameData, _cardEntityPrefab, _gameBoard, _difficulty.GetDifficulty());
+            _gameController = new MatchingGameController(_gameData, _gameBoard, _difficulty.GetDifficulty());
         }
 
         private void ExitGame()
