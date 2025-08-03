@@ -1,18 +1,69 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.EventSystems;
+using UnityEngine.UI;
 
-public class MatchingCardEntity : MonoBehaviour
+public class MatchingCardEntity : MonoBehaviour, IPointerClickHandler
 {
-    // Start is called before the first frame update
-    void Start()
+    public Action<MatchingCardEntity> OnCardClick;
+    
+    [SerializeField] private Image _backImage;
+    [SerializeField] private Image _faceImage;
+    [SerializeField] private Image _valueImage;
+    public int MatchID { get; private set; }
+    public bool IsMatched { get; private set; }
+    public bool _isInteractable { get; private set; }
+
+
+    public void Initialize(int matchId, Texture2D backTexture, Texture2D faceTexture, Texture2D valueTexture)
     {
+        if (!_backImage || !_faceImage)
+        {
+            Debug.LogError("No backImage or frontImage is set in inspector for card entity prefab.");
+            return;
+        }
         
+        MatchID = matchId;
+        _backImage.sprite = SpriteUtil.FromTexture(backTexture);
+        _faceImage.sprite = SpriteUtil.FromTexture(faceTexture);
+        _valueImage.sprite = SpriteUtil.FromTexture(valueTexture);
     }
 
-    // Update is called once per frame
-    void Update()
+    public void FlipCardFaceUp()
     {
-        
+        _backImage.gameObject.SetActive(false);
+        _faceImage.gameObject.SetActive(true);
+        _valueImage.gameObject.SetActive(true);
     }
+
+    public void FlipCardFaceDown()
+    {
+        _backImage.gameObject.SetActive(true);
+        _faceImage.gameObject.SetActive(false);
+        _valueImage.gameObject.SetActive(false);
+    }
+
+    public void SetIsInteractable(bool isInteractable)
+    {
+        _isInteractable = isInteractable;
+    }
+    
+    public void OnPointerClick(PointerEventData eventData)
+    {
+        if (_isInteractable)
+        {
+            CancelInvoke();
+            OnCardClick?.Invoke(this);
+        }
+            
+    }
+
+    public void FlipCardFaceDownWithDelay(float delay)
+    {
+        Invoke(nameof(FlipCardFaceDown), delay);
+    }
+    
+    
 }
