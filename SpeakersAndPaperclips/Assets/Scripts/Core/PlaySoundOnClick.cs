@@ -17,7 +17,8 @@ namespace Core
 
         public void OnPointerClick(PointerEventData eventData)
         {
-            _audioSource.Play();
+            if(_audioSource.gameObject.activeInHierarchy)
+                _audioSource.Play();
         }
     }
 }
