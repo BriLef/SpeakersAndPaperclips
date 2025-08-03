@@ -94,9 +94,11 @@ namespace MatchingGame.Scripts
             {
                 foreach (var card in _gridLayoutGroup.GetComponentsInChildren<MatchingCardEntity>())
                 {
-                    Destroy(card.gameObject);
+                    card.DestroySelf();
                 }
             }
+            
+            StopAllCoroutines();
         }
 
         public void HandleIntro()
@@ -106,14 +108,14 @@ namespace MatchingGame.Scripts
 
         public IEnumerator ShowThenHideCards()
         {
-            yield return new WaitForSeconds(1.5f);
+            yield return new WaitForSeconds(0.5f);
             foreach (var card in _cards)
             {
                 card.FlipCardFaceUp();
                 yield return new WaitForSeconds(0.05f);
             }
             
-            yield return new WaitForSeconds(3);
+            yield return new WaitForSeconds(1.5f);
             
             foreach (var card in _cards)
             {

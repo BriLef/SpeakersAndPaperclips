@@ -33,5 +33,13 @@ namespace Core
         {
             return _currentOption.Value.ToString();
         }
+        
+        public void IncrementSelection()
+        {
+            int newIndex = _options.IndexOf(_currentOption) + 1;
+            int finalIndex = Math.Clamp(newIndex, 0, _options.Count - 1);
+            
+            OnOptionChange(_options[finalIndex]);
+        }
     }
 }

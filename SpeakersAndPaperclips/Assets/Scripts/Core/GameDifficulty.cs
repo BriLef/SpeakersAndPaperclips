@@ -18,6 +18,11 @@ namespace Core
     {
         [SerializeField] private Selector _selector;
 
+        public void IncreaseDifficulty()
+        {
+            _selector.IncrementSelection();
+        }
+        
         public Difficulty GetDifficulty()
         {
             try
