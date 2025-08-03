@@ -12,23 +12,38 @@ namespace MatchingGame.Scripts
         [Header("Core Variables")] 
         [SerializeField] private MatchingGameData _gameData;
         [SerializeField] private GameDifficulty _difficulty;
+        [SerializeField] private MatchingBoardView _gameBoard;
+        
+        [Header("Buttons")]
         [SerializeField] private Button _playButton;
         [SerializeField] private Button _exitButton;
         [SerializeField] private Button _nextButton;
         [SerializeField] private Button _endScreenExitButton;
-        [SerializeField] private MatchingBoardView _gameBoard;
+
+        
+        [Header("Text")]
         [SerializeField] private UICounterDisplay turnCountTextDisplay;
         [SerializeField] private UICounterDisplay MatchesFoundTextDisplay;
 
+        [Header("Audio")] 
+        [SerializeField] private AudioSource _audioSource;
+        [SerializeField] private AudioClip _musicTrack;
+        [SerializeField] private AudioClip _correctPairSound;
+        [SerializeField] private AudioClip _incorrectPairSound;
+        [SerializeField] private AudioClip _gameWonSound;
+        
         private PageSelector _pageSelector;
         private MatchingGameController _gameController;
-        
         
         private void Start()
         {
             _playButton.onClick.AddListener(StartGame);
             
             _pageSelector = GetComponent<PageSelector>();
+            
+            _audioSource.clip = _musicTrack;
+            _audioSource.loop = true;
+            _audioSource.Play();
         }
 
         private void StartGame()
@@ -55,6 +70,10 @@ namespace MatchingGame.Scripts
             _gameController.OnMatchFound += turnCountTextDisplay.IncrementCount;
             
             _gameController.OnMatchFound += MatchesFoundTextDisplay.IncrementCount;
+            
+            _gameController.OnGameWon += () => { _audioSource.PlayOneShot(_gameWonSound);  };
+            _gameController.OnMatchFound += () => { _audioSource.PlayOneShot(_correctPairSound); };
+            _gameController.OnIncorrectTry += () => { _audioSource.PlayOneShot(_incorrectPairSound); };
         }
 
         private void ExitGame(bool destroyGame = false)

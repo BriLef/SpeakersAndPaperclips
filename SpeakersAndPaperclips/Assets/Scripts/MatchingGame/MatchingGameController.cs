@@ -25,7 +25,7 @@ namespace MatchingGame.Scripts
             _gameBoard.OnCardSelected += OnCardSelected;
             
             _totalPairsLeftToWin = _gameBoard.NumberOfCards / 2;
-           
+          
         }
 
         private void OnCardSelected(MatchingCardEntity card)
