@@ -1,0 +1,40 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: d1c2c5151b7c7074ba0da1406b8aac9e, type: 3}
+  m_Name: SummerData
+  m_EditorClassIdentifier: 
+  ThemeName: Summer
+  BackCardTexture: {fileID: 2800000, guid: 130bff847efa5ec4bb90163b8d8ab50f, type: 3}
+  FaceCardTexture: {fileID: 2800000, guid: 317a42f637c89e0419c1d309b329137c, type: 3}
+  PossibleMatches:
+  - {fileID: 2800000, guid: 20415087b46fcc743a61afe0cb47f65f, type: 3}
+  - {fileID: 2800000, guid: f75c23f0ba8cb194981b6dfaded855d1, type: 3}
+  - {fileID: 2800000, guid: dbc2846cb4899ba46a4e74112525534b, type: 3}
+  - {fileID: 2800000, guid: d784b8a1890b2154eb3fa0d3677f24a9, type: 3}
+  - {fileID: 2800000, guid: af6fd4344e8201a4994c78125c6b03ac, type: 3}
+  - {fileID: 2800000, guid: ab35e34291242d14889c016e618f6e5c, type: 3}
+  - {fileID: 2800000, guid: 548520b4ab24c0247aa2ebe5c5bffeab, type: 3}
+  - {fileID: 2800000, guid: 673635748f4642b418820920cf8d4588, type: 3}
+  - {fileID: 2800000, guid: 069b89c0a3689124aa0ec6c4384aa8a3, type: 3}
+  - {fileID: 2800000, guid: 8916af108ad35e64e833ce0434eae8e9, type: 3}
+  - {fileID: 2800000, guid: 0bff151bb3499ea48820b7ce2577c787, type: 3}
+  - {fileID: 2800000, guid: f9b089830ca13044f97411d73d1790a1, type: 3}
+  - {fileID: 2800000, guid: 07de245fcb46d654f9ea638d5ead6b66, type: 3}
+  - {fileID: 2800000, guid: 7bb1c43fd5bf4184ebf6220746936f95, type: 3}
+  - {fileID: 2800000, guid: 819a6daff4346684da5c311408911d8a, type: 3}
+  - {fileID: 2800000, guid: 2d18d5b47bca01548b07018398d5b7fd, type: 3}
+  - {fileID: 2800000, guid: ac77ddb77b492e84fa51e48e58127bf6, type: 3}
+  - {fileID: 2800000, guid: 0ce5e9faccbb3c54d97e8c0a54f59132, type: 3}
+  - {fileID: 2800000, guid: 8f378f10461b10a47ba309804810791e, type: 3}
+  - {fileID: 2800000, guid: 18fc3c8722e806c4ba977076723f0b6c, type: 3}
+  - {fileID: 2800000, guid: a440c1a4e91d41846b8e8851b9971ea3, type: 3}
+  - {fileID: 2800000, guid: 262f7d2e0ea7836469945fbed1479cf5, type: 3}
