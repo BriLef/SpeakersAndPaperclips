@@ -25,20 +25,36 @@ namespace MatchingGame.Scripts
         public int NumberOfCards { private set; get; }
         
         private List<MatchingCardEntity> _cards;
+        public List<MatchingCardEntity> Cards;
         private ICardFactory _factory;
        
-        public void Initialize(MatchingGameData data, Difficulty difficulty)
+        public void Initialize(MatchingGameData data, Difficulty difficulty, MatchingGameSaveSystem.GameBoardSaveData saveData = null)
         {
-            NumberOfCards = GetCardCountAndUpdateGridLayout(difficulty);
-            var deck = data.BuildDeck(NumberOfCards);
+            if (saveData == null)
+            {
+                
+            }
+            else
+            {
+                NumberOfCards = GetCardCountAndUpdateGridLayout(difficulty);
+                var deck = data.BuildDeck(NumberOfCards);
             
-            _factory = gameObject.GetComponent<ICardFactory>();
+                _factory = gameObject.GetComponent<ICardFactory>();
             
-            CreateCardsAndSetParent(deck, data.BackCardTexture, data.FaceCardTexture);
+                CreateCardsAndSetParent(deck, data.BackCardTexture, data.FaceCardTexture);
+
+            }
             
             HandleIntro();
         }
 
+        public void InitializeWithSaveData(MatchingGameSaveSystem.GameBoardSaveData saveData, MatchingGameData data, Difficulty difficulty)
+        {
+
+            NumberOfCards = GetCardCountAndUpdateGridLayout(difficulty);
+            
+        }
+        
         private void CreateCardsAndSetParent(List<MatchingCard> deck, Texture2D backTexture, Texture2D faceTexture)
         {
             _cards = new List<MatchingCardEntity>(deck.Count);

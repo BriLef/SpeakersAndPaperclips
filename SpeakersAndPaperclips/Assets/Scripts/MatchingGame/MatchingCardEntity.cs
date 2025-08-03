@@ -11,6 +11,8 @@ public class MatchingCardEntity : MonoBehaviour, IPointerClickHandler
     [SerializeField] private Image _backImage;
     [SerializeField] private Image _faceImage;
     [SerializeField] private Image _valueImage;
+    public Texture2D ValueTexture;
+    
     public bool IsMatched;
     public int MatchID { get; private set; }
     public bool _isInteractable { get; private set; }
@@ -24,6 +26,7 @@ public class MatchingCardEntity : MonoBehaviour, IPointerClickHandler
         }
         
         MatchID = matchId;
+        ValueTexture = valueTexture;
         _backImage.sprite = SpriteUtil.FromTexture(backTexture);
         _faceImage.sprite = SpriteUtil.FromTexture(faceTexture);
         _valueImage.sprite = SpriteUtil.FromTexture(valueTexture);

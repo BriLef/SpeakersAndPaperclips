@@ -1,4 +1,5 @@
 using System;
+using System.Collections.Generic;
 using Core;
 using MatchingGame.Scripts.SOs;
 using UnityEngine;
@@ -14,17 +15,26 @@ namespace MatchingGame.Scripts
         [SerializeField] private float _delayToFlipCards = 0.5f;
         private MatchingBoardView _gameBoard;
         private int _totalPairsLeftToWin = 0;
+        private int _turnsTaken = 0;
+        private Difficulty _currentDifficulty;
         private MatchingCardEntity _currentSelectedCard;
         
         public MatchingGameController(MatchingGameData gameData, MatchingBoardView gameBoard, Difficulty difficulty)
         {
             _gameBoard = gameBoard;
             _gameBoard.ClearBoard();
-            _gameBoard.Initialize(gameData, difficulty);
-            _gameBoard.OnCardSelected += OnCardSelected;
+            _currentDifficulty = difficulty;
+
+            MatchingGameSaveSystem.GameBoardSaveData saveData = null;
             
+            if (MatchingGameSaveSystem.DoesSaveExists(_currentDifficulty.ToString()))//Save exists
+            {
+                saveData = MatchingGameSaveSystem.LoadGame(_currentDifficulty.ToString());
+            }
+            
+            _gameBoard.Initialize(gameData, _currentDifficulty, saveData);
             _totalPairsLeftToWin = _gameBoard.NumberOfCards / 2;
-          
+            _gameBoard.OnCardSelected += OnCardSelected;
         }
 
         private void OnCardSelected(MatchingCardEntity card)
@@ -41,7 +51,7 @@ namespace MatchingGame.Scripts
                 {
                     OnMatchFound?.Invoke();
                     _totalPairsLeftToWin--;
-                    
+                    _turnsTaken++;
                     _currentSelectedCard.HideCardWithDelay(0.5f);
                     _currentSelectedCard.IsMatched = true;
                     
@@ -57,6 +67,7 @@ namespace MatchingGame.Scripts
                 {
                     _currentSelectedCard.FlipCardFaceDownWithDelay(_delayToFlipCards);
                     _currentSelectedCard.SetIsInteractable(true);
+                    _turnsTaken++;
                     
                     card.FlipCardFaceDownWithDelay(_delayToFlipCards);
                     card.SetIsInteractable(true);
@@ -71,7 +82,10 @@ namespace MatchingGame.Scripts
         {
             _gameBoard.OnCardSelected -= OnCardSelected;
         }
+        
+        public void SaveBoard()
+        {
+            MatchingGameSaveSystem.SaveGame(_gameBoard, _currentDifficulty.ToString(), _totalPairsLeftToWin, _turnsTaken);
+        }
    }
-   
-   
 }

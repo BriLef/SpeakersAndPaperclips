@@ -86,6 +86,7 @@ namespace MatchingGame.Scripts
             _endScreenExitButton.onClick.RemoveAllListeners();
             _nextButton.onClick.RemoveAllListeners();
             
+            _gameController.SaveBoard();
             DestroyGame();
         }
 
@@ -103,6 +104,8 @@ namespace MatchingGame.Scripts
             
             _playButton.onClick.RemoveAllListeners();
             _exitButton.onClick.RemoveAllListeners();
+            
+            MatchingGameSaveSystem.DeleteSave(_difficulty.ToString());
             
             DestroyGame();
         }
