@@ -1,6 +1,5 @@
 using System;
-using System.Collections;
-using System.Collections.Generic;
+using Core;
 using UnityEngine;
 using UnityEngine.EventSystems;
 using UnityEngine.UI;
@@ -12,11 +11,10 @@ public class MatchingCardEntity : MonoBehaviour, IPointerClickHandler
     [SerializeField] private Image _backImage;
     [SerializeField] private Image _faceImage;
     [SerializeField] private Image _valueImage;
+    public bool IsMatched;
     public int MatchID { get; private set; }
-    public bool IsMatched { get; private set; }
     public bool _isInteractable { get; private set; }
-
-
+    
     public void Initialize(int matchId, Texture2D backTexture, Texture2D faceTexture, Texture2D valueTexture)
     {
         if (!_backImage || !_faceImage)
@@ -64,6 +62,22 @@ public class MatchingCardEntity : MonoBehaviour, IPointerClickHandler
     {
         Invoke(nameof(FlipCardFaceDown), delay);
     }
-    
-    
+
+    public void HideCardWithDelay(float delay)
+    {
+        Invoke(nameof(HideCard), delay);
+    }
+
+    public void HideCard()
+    {
+        _backImage.gameObject.SetActive(false);
+        _faceImage.gameObject.SetActive(false);
+        _valueImage.gameObject.SetActive(false);
+    }
+
+    public void DestroySelf()
+    {
+        CancelInvoke();
+        Destroy(gameObject);
+    }
 }
